@@ -9,4 +9,4 @@ Comando para mover todos los ficheros y directorios hacia el nivel indicado.
 
 ![2](https://user-images.githubusercontent.com/53159393/152002678-51de632a-e741-4837-928a-e3623828ccf4.png)
 
-![1](https://user-images.githubusercontent.com/53159393/152004148-1bc3761a-b312-447e-a584-1f3e5e131f05.png)
+![1](https://user-images.githubusercontent.com/53159393/152004453-d88319bc-1e67-4020-8f7b-ed2299291a5c.png)

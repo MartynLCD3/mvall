@@ -20,30 +20,44 @@ closeProgram() {
 	${noColor}"
 }
 
-moveAll() {
-	if [ -d "$location" ]; then
-		if [ "$(ls --ignore=$location)" ]; then
-			echo -e
-			echo "${yellow}Moviendo contenido a: ${noColor}${green}$location${noColor}"
-			mv $(ls --ignore=$location) $location > /dev/null 2>&1 
-		       	sleep 2
-			echo -e
-			tput bold
-			echo "✅ ${green}Documentos movidos correctamente.${noColor}"
-			sleep 2
-			closeProgram	
-		else
-			echo -e
-			tput bold
-			echo "${red}No existen ficheros ni directorios para mover.${noColor}"
-			sleep 2	
-		       	closeProgram
-		fi	
+process() {
+	if [ "$(ls --ignore=$location)" ]; then
+		echo -e
+		echo "${yellow}Moviendo contenido a: ${noColor}${green}$location${noColor}"
+		mv $(ls --ignore=$location) $location 
+	       	sleep 2
+		echo -e
+		tput bold
+		echo "✅ ${green}Documentos movidos correctamente.${noColor}"
+		sleep 2
+		closeProgram	
 	else
 		echo -e
-		echo "${red}El directorio ingresado no existe${noColor}"
-		sleep 1 
-		mainMenu
+		tput bold
+		echo "${red}No existen ficheros ni directorios para mover.${noColor}"
+		sleep 2	
+	       	closeProgram
+	fi	
+}
+
+moveAll() {
+	if [ -d "$location" ]; then
+		process
+	else
+		echo -e
+		echo -ne "${red}El directorio ingresado no existe.${noColor} ¿Crear uno nuevo? [ ${green}si${noColor} / ${red}no${noColor} ] ▸ "
+		read createNewDir
+		case $createNewDir in
+			si) 
+				mkdir $location
+				process ;;
+			no)	
+				sleep 1 
+				mainMenu ;;
+			*)
+				sleep 1 
+				mainMenu ;;
+		esac
 	fi
 }
 
